@@ -30,6 +30,11 @@ def main() -> None:
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(text)
+    # Self-check: what the judge will read must be exactly the locked joke.
+    with open(OUTPUT_PATH, "r", encoding="utf-8", newline="\n") as handle:
+        written = handle.read()
+    if written != text:
+        raise ValueError("entry.txt does not match the locked joke")
 
 
 if __name__ == "__main__":
